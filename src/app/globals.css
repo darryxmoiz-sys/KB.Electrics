@@ -1,0 +1,188 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --paper: #F7F4EC;
+  --parchment: #EFE7D4;
+  --ink: #0F2018;
+  --bottle: #1B3A2E;
+  --bottle-light: #274F3F;
+  --copper: #C4632B;
+  --copper-light: #D98449;
+  --slate: #5B6760;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--copper);
+  color: var(--paper);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--paper); }
+::-webkit-scrollbar-thumb { background: var(--bottle); border-radius: 0; }
+
+/* Focus visibility */
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+  outline: 2px solid var(--copper);
+  outline-offset: 3px;
+}
+
+/* Paper grain texture overlay */
+.paper-grain {
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(27,58,46,0.025) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(196,99,43,0.03) 0%, transparent 50%);
+}
+
+.noise-texture {
+  position: relative;
+}
+.noise-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.4;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+/* === JOB TICKET — signature card style === */
+.job-ticket {
+  position: relative;
+  background: var(--paper);
+  border: 1.5px solid rgba(15,32,24,0.15);
+  box-shadow: 3px 4px 0 rgba(15,32,24,0.08);
+}
+
+.job-ticket::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background-image: radial-gradient(circle at 8px 0, transparent 5px, var(--paper) 5.5px);
+  background-size: 16px 8px;
+  background-repeat: repeat-x;
+}
+
+.job-ticket-stub {
+  border-left: 1.5px dashed rgba(15,32,24,0.25);
+}
+
+/* Stamp badge */
+.stamp-badge {
+  border: 2px solid var(--bottle);
+  border-radius: 50%;
+  color: var(--bottle);
+  transform: rotate(-8deg);
+  position: relative;
+}
+.stamp-badge::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border: 1px dashed var(--bottle);
+  border-radius: 50%;
+  opacity: 0.5;
+}
+
+/* Section padding */
+.section-padding {
+  padding: 4.5rem 0;
+}
+@media (min-width: 768px) {
+  .section-padding { padding: 6.5rem 0; }
+}
+
+/* Underline-draw link */
+.link-draw {
+  position: relative;
+  text-decoration: none;
+}
+.link-draw::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1.5px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.link-draw:hover::after { transform: scaleX(1); }
+
+/* Hairline divider with copper dot */
+.dot-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.dot-divider::before, .dot-divider::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: rgba(15,32,24,0.15);
+}
+
+/* Wiring diagram draw animation handled via class on svg path */
+.wire-path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+}
+
+/* Sticky nav blur */
+.nav-solid {
+  background: rgba(247,244,236,0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Mobile bottom bar */
+.mobile-cta-bar { display: none; }
+@media (max-width: 768px) {
+  .mobile-cta-bar {
+    display: flex;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 100;
+  }
+}
+
+/* Texture for dark band sections (footer / route map) */
+.bottle-band {
+  background-color: var(--bottle);
+  background-image: radial-gradient(circle at 15% 30%, rgba(255,255,255,0.04) 0%, transparent 45%),
+    radial-gradient(circle at 85% 70%, rgba(196,99,43,0.08) 0%, transparent 50%);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
