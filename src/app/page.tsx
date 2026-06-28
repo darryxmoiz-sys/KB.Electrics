@@ -1,17 +1,10 @@
 import type { Metadata } from "next";
 import Hero from "@/components/Hero";
 import WhyChooseUs from "@/components/WhyChooseUs";
-import ServicesSection from "@/components/ServicesSection";
+import ServicesPreview from "@/components/ServicesPreview";
 import EmergencyBanner from "@/components/EmergencyBanner";
-import SolarSection from "@/components/SolarSection";
-import EVSection from "@/components/EVSection";
-import FinanceSection from "@/components/FinanceSection";
-import ProjectsSection from "@/components/ProjectsSection";
-import ReviewsSection from "@/components/ReviewsSection";
-import AreasSection from "@/components/AreasSection";
-import FAQSection from "@/components/FAQSection";
-import ContactSection from "@/components/ContactSection";
-import MapSection from "@/components/MapSection";
+import ReviewsPreview from "@/components/ReviewsPreview";
+import CTASection from "@/components/CTASection";
 
 export const metadata: Metadata = {
   title: "KB Electrics | Family-Run Electricians in Clanfield, Hampshire",
@@ -24,17 +17,10 @@ export default function HomePage() {
     <>
       <Hero />
       <WhyChooseUs />
-      <ServicesSection />
+      <ServicesPreview />
       <EmergencyBanner />
-      <SolarSection />
-      <EVSection />
-      <FinanceSection />
-      <ProjectsSection />
-      <ReviewsSection />
-      <AreasSection />
-      <FAQSection />
-      <ContactSection />
-      <MapSection />
+      <ReviewsPreview />
+      <CTASection />
     </>
   );
 }

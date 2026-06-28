@@ -9,49 +9,65 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        paper: "#F7F4EC",
-        parchment: "#EFE7D4",
-        ink: "#0F2018",
-        bottle: {
-          DEFAULT: "#1B3A2E",
-          light: "#274F3F",
-          dark: "#0F2018",
+        midnight: {
+          DEFAULT: "#0B1120",
+          deep: "#070B16",
+          light: "#121A2E",
         },
-        copper: {
-          DEFAULT: "#C4632B",
-          light: "#D98449",
-          dark: "#9A4A1E",
+        violet: {
+          DEFAULT: "#7C5CFF",
+          light: "#9A7DFF",
+          dark: "#5B3FE0",
         },
-        slate: "#5B6760",
+        cyan: {
+          DEFAULT: "#22D3EE",
+          light: "#67E8F9",
+        },
+        amber: {
+          DEFAULT: "#FFB454",
+          light: "#FFC97A",
+          dark: "#F59E2A",
+        },
+        mist: "#A8B3CC",
+        line: "rgba(255,255,255,0.08)",
       },
       fontFamily: {
-        display: ["var(--font-fraunces)", "Georgia", "serif"],
+        display: ["var(--font-grotesk)", "system-ui", "sans-serif"],
         body: ["var(--font-inter)", "system-ui", "sans-serif"],
-        mono: ["var(--font-jbmono)", "monospace"],
+        accent: ["var(--font-sora)", "system-ui", "sans-serif"],
       },
       backgroundImage: {
-        "paper-grain":
-          "radial-gradient(circle at 20% 20%, rgba(27,58,46,0.03) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(196,99,43,0.04) 0%, transparent 50%)",
+        "hero-mesh":
+          "radial-gradient(circle at 15% 20%, rgba(124,92,255,0.25) 0%, transparent 45%), radial-gradient(circle at 85% 15%, rgba(34,211,238,0.18) 0%, transparent 40%), radial-gradient(circle at 50% 90%, rgba(255,180,84,0.10) 0%, transparent 45%)",
+        "card-glow":
+          "linear-gradient(135deg, rgba(124,92,255,0.15), rgba(34,211,238,0.08))",
+        "violet-cyan": "linear-gradient(135deg, #7C5CFF 0%, #22D3EE 100%)",
+        "violet-amber": "linear-gradient(135deg, #7C5CFF 0%, #FFB454 100%)",
       },
       keyframes: {
-        "draw-line": {
-          from: { strokeDashoffset: "1000" },
-          to: { strokeDashoffset: "0" },
+        "blob-float": {
+          "0%, 100%": { transform: "translate(0,0) scale(1)" },
+          "33%": { transform: "translate(30px,-40px) scale(1.08)" },
+          "66%": { transform: "translate(-20px,30px) scale(0.95)" },
         },
-        "stamp-in": {
-          "0%": { transform: "scale(2) rotate(-8deg)", opacity: "0" },
-          "60%": { transform: "scale(0.95) rotate(-8deg)", opacity: "1" },
-          "100%": { transform: "scale(1) rotate(-8deg)", opacity: "1" },
+        "border-spin": {
+          to: { transform: "rotate(360deg)" },
         },
-        "flicker": {
-          "0%, 100%": { opacity: "1" },
-          "50%": { opacity: "0.85" },
+        "glow-pulse": {
+          "0%, 100%": { opacity: "0.5" },
+          "50%": { opacity: "1" },
+        },
+        "gradient-shift": {
+          "0%, 100%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
         },
       },
       animation: {
-        "draw-line": "draw-line 2.2s ease-out forwards",
-        "stamp-in": "stamp-in 0.6s cubic-bezier(0.2,1.4,0.4,1) forwards",
-        flicker: "flicker 3s ease-in-out infinite",
+        "blob-float": "blob-float 14s ease-in-out infinite",
+        "blob-float-slow": "blob-float 20s ease-in-out infinite reverse",
+        "border-spin": "border-spin 6s linear infinite",
+        "glow-pulse": "glow-pulse 2.5s ease-in-out infinite",
+        "gradient-shift": "gradient-shift 6s ease infinite",
       },
     },
   },

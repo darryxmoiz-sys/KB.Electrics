@@ -11,34 +11,35 @@ const finPoints = [
 
 export default function FinanceSection() {
   return (
-    <section className="section-padding bg-parchment border-y border-ink/8">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="section-padding bg-midnight relative overflow-hidden">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="job-ticket rounded-sm p-8 sm:p-12 grid grid-cols-1 sm:grid-cols-[auto_1fr] gap-8 items-center"
+          className="gradient-ring"
         >
-          <div className="stamp-badge w-24 h-24 flex flex-col items-center justify-center font-mono text-[11px] leading-tight text-center font-bold mx-auto sm:mx-0">
-            <span>FINANCE</span>
-            <span>AVAILABLE</span>
-          </div>
-          <div>
-            <h2 className="font-display font-medium text-2xl sm:text-3xl text-ink mb-4">
-              Bigger job than you expected?
-              <span className="italic text-copper"> We can spread it.</span>
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-              {finPoints.map((point) => (
-                <div key={point} className="flex items-start gap-2 text-sm text-ink/75">
-                  <FiCheck className="text-bottle mt-0.5 shrink-0" />
-                  {point}
-                </div>
-              ))}
+          <div className="p-8 sm:p-12 grid grid-cols-1 sm:grid-cols-[auto_1fr] gap-8 items-center">
+            <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-amber to-violet flex items-center justify-center shrink-0 mx-auto sm:mx-0">
+              <FiCreditCard className="text-white text-3xl" />
             </div>
-            <a href="#contact" className="link-draw text-bottle font-semibold text-sm mt-5 inline-block">
-              Ask about finance options →
-            </a>
+            <div>
+              <h2 className="font-display font-bold text-2xl sm:text-3xl text-white mb-4">
+                Bigger job than you expected?
+                <span className="text-gradient-amber"> We can spread it.</span>
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                {finPoints.map((point) => (
+                  <div key={point} className="flex items-start gap-2 text-sm text-mist">
+                    <FiCheck className="text-cyan mt-0.5 shrink-0" />
+                    {point}
+                  </div>
+                ))}
+              </div>
+              <a href="/contact" className="text-cyan font-semibold text-sm mt-5 inline-block hover:underline">
+                Ask about finance options →
+              </a>
+            </div>
           </div>
         </motion.div>
       </div>

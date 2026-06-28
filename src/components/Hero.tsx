@@ -1,81 +1,78 @@
 "use client";
 import { motion } from "framer-motion";
-import { FiPhone, FiArrowRight } from "react-icons/fi";
+import { FiPhone, FiArrowRight, FiZap } from "react-icons/fi";
 
-function WiringDiagram() {
+function GradientOrb() {
   return (
-    <svg
-      viewBox="0 0 480 480"
-      fill="none"
-      className="w-full h-full"
-      aria-hidden="true"
-    >
-      {/* dots representing components */}
-      <motion.circle cx="80" cy="80" r="6" fill="#C4632B" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 1.8, duration: 0.3 }} />
-      <motion.circle cx="400" cy="80" r="6" fill="#1B3A2E" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 2.0, duration: 0.3 }} />
-      <motion.circle cx="400" cy="400" r="6" fill="#C4632B" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 2.2, duration: 0.3 }} />
-      <motion.circle cx="80" cy="400" r="6" fill="#1B3A2E" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 2.4, duration: 0.3 }} />
-      <motion.circle cx="240" cy="240" r="9" fill="#1B3A2E" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 1.6, duration: 0.4 }} />
+    <div className="relative w-full aspect-square max-w-md mx-auto">
+      {/* Outer spinning gradient ring */}
+      <motion.div
+        className="absolute inset-0 rounded-full"
+        style={{
+          background: "conic-gradient(from 0deg, #7C5CFF, #22D3EE, #FFB454, #7C5CFF)",
+          padding: "3px",
+        }}
+        animate={{ rotate: 360 }}
+        transition={{ duration: 14, repeat: Infinity, ease: "linear" }}
+      >
+        <div className="w-full h-full rounded-full bg-midnight" />
+      </motion.div>
 
-      {/* main circuit path */}
-      <motion.path
-        d="M80 80 H240 V240 M240 240 H400 V80 M240 240 V400 H400 M80 80 V400 H240"
-        stroke="#1B3A2E"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        initial={{ pathLength: 0, opacity: 0 }}
-        animate={{ pathLength: 1, opacity: 1 }}
-        transition={{ duration: 1.6, ease: "easeInOut" }}
+      {/* Inner glow orb */}
+      <motion.div
+        className="absolute inset-8 rounded-full bg-gradient-to-br from-violet/40 via-cyan/30 to-amber/20 backdrop-blur-3xl"
+        animate={{ scale: [1, 1.05, 1] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      {/* resistor zigzag detail */}
-      <motion.path
-        d="M150 80 l8 -10 l8 20 l8 -20 l8 20 l8 -10"
-        stroke="#C4632B"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
-        initial={{ pathLength: 0, opacity: 0 }}
-        animate={{ pathLength: 1, opacity: 1 }}
-        transition={{ duration: 0.6, delay: 1.6 }}
-      />
+      {/* Lightning bolt centerpiece */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <motion.div
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.6, type: "spring" }}
+          className="w-28 h-28 rounded-3xl bg-white/8 border border-white/15 backdrop-blur-xl flex items-center justify-center"
+        >
+          <FiZap className="text-white text-5xl drop-shadow-[0_0_20px_rgba(124,92,255,0.8)]" />
+        </motion.div>
+      </div>
 
-      {/* small switch detail */}
-      <motion.g initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.9 }}>
-        <line x1="320" y1="240" x2="350" y2="225" stroke="#C4632B" strokeWidth="2" strokeLinecap="round" />
-        <circle cx="320" cy="240" r="3" fill="#C4632B" />
-        <circle cx="360" cy="240" r="3" fill="#C4632B" />
-      </motion.g>
-
-      {/* pulsing glow at center node */}
-      <motion.circle
-        cx="240" cy="240" r="9"
-        fill="none"
-        stroke="#C4632B"
-        strokeWidth="1.5"
-        initial={{ scale: 1, opacity: 0 }}
-        animate={{ scale: [1, 2.2], opacity: [0.6, 0] }}
-        transition={{ duration: 2, repeat: Infinity, delay: 2.6, ease: "easeOut" }}
-      />
-    </svg>
+      {/* Floating mini badges */}
+      <motion.div
+        className="absolute -top-2 -right-2 sm:top-2 sm:right-2 glass-card px-3 py-2 rounded-xl text-xs font-semibold text-white"
+        animate={{ y: [0, -8, 0] }}
+        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+      >
+        ⚡ 18th Edition
+      </motion.div>
+      <motion.div
+        className="absolute bottom-4 -left-4 sm:-left-2 glass-card px-3 py-2 rounded-xl text-xs font-semibold text-white"
+        animate={{ y: [0, 8, 0] }}
+        transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+      >
+        ✓ Fully Insured
+      </motion.div>
+    </div>
   );
 }
 
 export default function Hero() {
   return (
-    <section className="relative pt-32 pb-16 lg:pt-44 lg:pb-24 overflow-hidden bg-paper">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-          {/* Text column */}
+    <section className="relative pt-32 pb-20 lg:pt-44 lg:pb-28 overflow-hidden hero-mesh-bg grid-overlay">
+      {/* Drifting blobs */}
+      <div className="blob w-96 h-96 bg-violet/30 top-0 -left-20 animate-blob-float" />
+      <div className="blob w-80 h-80 bg-cyan/20 bottom-0 right-0 animate-blob-float-slow" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-8 items-center">
           <div>
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 border border-bottle/25 bg-parchment text-bottle text-xs font-semibold px-4 py-1.5 rounded-full mb-7 tracking-wide"
+              className="inline-flex items-center gap-2 pill-badge text-cyan text-xs font-semibold px-4 py-1.5 rounded-full mb-7 tracking-wide"
             >
+              <span className="w-2 h-2 rounded-full bg-cyan animate-glow-pulse" />
               FAMILY-RUN · CLANFIELD, HAMPSHIRE
             </motion.div>
 
@@ -83,24 +80,24 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="font-display font-medium text-[2.6rem] sm:text-5xl lg:text-[3.6rem] text-ink leading-[1.08] mb-6"
+              className="font-display font-bold text-[2.6rem] sm:text-5xl lg:text-[3.5rem] text-white leading-[1.08] mb-6"
             >
-              Electricians who turn up,
+              Electrical work,
               <br />
-              <span className="italic text-copper">tell you straight,</span>
+              <span className="text-gradient">done properly</span>
               <br />
-              and do it properly.
+              first time.
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.25 }}
-              className="text-lg text-ink/70 max-w-md mb-9 leading-relaxed"
+              className="text-lg text-mist max-w-md mb-9 leading-relaxed"
             >
-              KB Electrics is a local, family-run electrical company serving Clanfield and
-              Hampshire. 18th Edition qualified, fully insured, and happy to explain exactly
-              what we're doing and why.
+              KB Electrics is a family-run electrical company serving Clanfield and
+              Hampshire. 18th Edition qualified, fully insured, and genuinely easy to
+              talk to.
             </motion.p>
 
             <motion.div
@@ -111,13 +108,13 @@ export default function Hero() {
             >
               <a
                 href="tel:+447809211836"
-                className="flex items-center justify-center gap-2 bg-bottle hover:bg-bottle-light text-paper font-semibold text-base px-7 py-4 rounded-full transition-colors duration-200"
+                className="btn-glow flex items-center justify-center gap-2 text-white font-semibold text-base px-7 py-4 rounded-full"
               >
                 <FiPhone /> Call 07809 211836
               </a>
               <a
-                href="#contact"
-                className="flex items-center justify-center gap-2 border-2 border-ink/15 hover:border-copper text-ink font-semibold text-base px-7 py-4 rounded-full transition-colors duration-200"
+                href="/contact"
+                className="glass-card flex items-center justify-center gap-2 text-white font-semibold text-base px-7 py-4 rounded-full"
               >
                 Get a Free Quote <FiArrowRight />
               </a>
@@ -127,25 +124,22 @@ export default function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.5 }}
-              className="flex flex-wrap gap-x-6 gap-y-2 mt-9 text-sm text-ink/60 font-mono"
+              className="flex flex-wrap gap-x-5 gap-y-2 mt-9 text-sm text-mist"
             >
-              <span>18TH EDITION QUALIFIED</span>
-              <span className="text-copper">·</span>
-              <span>FULLY INSURED</span>
-              <span className="text-copper">·</span>
-              <span>FREE QUOTES</span>
+              <span>18th Edition Qualified</span>
+              <span className="text-violet">·</span>
+              <span>Fully Insured</span>
+              <span className="text-violet">·</span>
+              <span>Free Quotes</span>
             </motion.div>
           </div>
 
-          {/* Wiring diagram column */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative aspect-square max-w-md mx-auto lg:max-w-none"
+            transition={{ duration: 0.7, delay: 0.2 }}
           >
-            <div className="absolute inset-6 border border-bottle/10 rounded-full" />
-            <WiringDiagram />
+            <GradientOrb />
           </motion.div>
         </div>
       </div>

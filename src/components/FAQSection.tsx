@@ -18,16 +18,16 @@ export default function FAQSection() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="section-padding bg-parchment border-y border-ink/8">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="faq" className="section-padding bg-midnight relative overflow-hidden">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <p className="text-copper text-sm font-semibold tracking-[0.15em] uppercase mb-3 font-mono">FAQs</p>
-          <h2 className="font-display font-medium text-3xl sm:text-4xl text-ink leading-tight">
+          <p className="text-cyan text-sm font-semibold tracking-[0.15em] uppercase mb-3 font-accent">FAQs</p>
+          <h2 className="font-display font-bold text-3xl sm:text-4xl text-white leading-tight">
             Questions we get asked
           </h2>
         </motion.div>
@@ -40,17 +40,17 @@ export default function FAQSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.04 }}
-              className="bg-paper border border-ink/10 rounded-xl overflow-hidden"
+              className="glass-card overflow-hidden"
             >
               <button
                 onClick={() => setOpen(open === i ? null : i)}
                 className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left"
               >
-                <span className="font-display font-medium text-ink text-base">{faq.q}</span>
+                <span className="font-display font-medium text-white text-base">{faq.q}</span>
                 <motion.span
                   animate={{ rotate: open === i ? 45 : 0 }}
                   transition={{ duration: 0.2 }}
-                  className="text-copper shrink-0"
+                  className="text-cyan shrink-0"
                 >
                   <FiPlus />
                 </motion.span>
@@ -63,7 +63,7 @@ export default function FAQSection() {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.25 }}
                   >
-                    <p className="px-5 pb-4 text-ink/70 text-sm leading-relaxed">{faq.a}</p>
+                    <p className="px-5 pb-4 text-mist text-sm leading-relaxed">{faq.a}</p>
                   </motion.div>
                 )}
               </AnimatePresence>

@@ -1,14 +1,12 @@
 "use client";
 import { motion } from "framer-motion";
-import {
-  FiHome, FiClipboard, FiUsers, FiZap, FiSun,
-} from "react-icons/fi";
+import { FiHome, FiClipboard, FiUsers, FiZap, FiSun } from "react-icons/fi";
 
 const serviceGroups = [
   {
-    ref: "JOB · DOM",
     title: "Domestic Electrical",
     icon: FiHome,
+    grad: "from-violet to-cyan",
     items: [
       "Full & partial rewires",
       "Consumer unit (fuse board) upgrades",
@@ -19,9 +17,9 @@ const serviceGroups = [
     ],
   },
   {
-    ref: "JOB · TST",
     title: "Testing & Inspection",
     icon: FiClipboard,
+    grad: "from-cyan to-amber",
     items: [
       "Electrical Installation Condition Reports (EICR)",
       "Electrical inspections",
@@ -30,9 +28,9 @@ const serviceGroups = [
     ],
   },
   {
-    ref: "JOB · LND",
     title: "Landlord Services",
     icon: FiUsers,
+    grad: "from-amber to-violet",
     items: [
       "Landlord safety certificates",
       "EICR reports",
@@ -41,9 +39,9 @@ const serviceGroups = [
     ],
   },
   {
-    ref: "JOB · EVC",
     title: "EV Charging",
     icon: FiZap,
+    grad: "from-violet to-amber",
     items: [
       "EV charger installation",
       "Home charging points",
@@ -52,9 +50,9 @@ const serviceGroups = [
     ],
   },
   {
-    ref: "JOB · SLR",
     title: "Renewable Energy",
     icon: FiSun,
+    grad: "from-cyan to-violet",
     items: [
       "Solar panel installation",
       "Battery storage systems",
@@ -62,9 +60,9 @@ const serviceGroups = [
     ],
   },
   {
-    ref: "JOB · COM",
     title: "Commercial Services",
     icon: FiHome,
+    grad: "from-amber to-cyan",
     items: [
       "Commercial electrical work",
       "Office lighting",
@@ -76,25 +74,25 @@ const serviceGroups = [
 
 export default function ServicesSection() {
   return (
-    <section id="services" className="section-padding bg-paper">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="services" className="section-padding bg-midnight relative overflow-hidden">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="max-w-xl mb-14"
         >
-          <p className="text-copper text-sm font-semibold tracking-[0.15em] uppercase mb-3 font-mono">
+          <p className="text-cyan text-sm font-semibold tracking-[0.15em] uppercase mb-3 font-accent">
             What We Do
           </p>
-          <h2 className="font-display font-medium text-3xl sm:text-4xl text-ink leading-tight mb-4">
+          <h2 className="font-display font-bold text-3xl sm:text-4xl text-white leading-tight mb-4">
             Six job types.
             <br />
-            <span className="italic text-bottle">One careful standard.</span>
+            <span className="text-gradient">One careful standard.</span>
           </h2>
-          <p className="text-ink/70 text-base leading-relaxed">
-            Every ticket below covers real work we carry out across Hampshire — from a single
-            socket to a full commercial rewire.
+          <p className="text-mist text-base leading-relaxed">
+            Every service below covers real work we carry out across Hampshire — from a
+            single socket to a full commercial rewire.
           </p>
         </motion.div>
 
@@ -108,31 +106,26 @@ export default function ServicesSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: (i % 3) * 0.08 }}
-                className="job-ticket rounded-sm p-6 pt-8 flex flex-col"
+                className="glass-card p-6 flex flex-col"
               >
-                <div className="flex items-start justify-between mb-5">
-                  <div className="w-11 h-11 bg-bottle/8 border border-bottle/20 rounded-lg flex items-center justify-center">
-                    <Icon className="text-bottle text-lg" />
-                  </div>
-                  <span className="font-mono text-[11px] text-ink/40 tracking-wider pt-1">
-                    {group.ref}
-                  </span>
+                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${group.grad} flex items-center justify-center mb-5`}>
+                  <Icon className="text-white text-xl" />
                 </div>
 
-                <h3 className="font-display font-semibold text-lg text-ink mb-4">{group.title}</h3>
+                <h3 className="font-display font-semibold text-lg text-white mb-4">{group.title}</h3>
 
-                <ul className="space-y-2 flex-1">
+                <ul className="space-y-2.5 flex-1">
                   {group.items.map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-sm text-ink/70">
-                      <span className="text-copper mt-1.5 w-1 h-1 rounded-full bg-copper shrink-0" />
+                    <li key={item} className="flex items-start gap-2 text-sm text-mist">
+                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-cyan shrink-0" />
                       {item}
                     </li>
                   ))}
                 </ul>
 
                 <a
-                  href="#contact"
-                  className="link-draw text-bottle font-semibold text-sm mt-5 inline-block w-fit"
+                  href="/contact"
+                  className="text-cyan font-semibold text-sm mt-5 inline-flex items-center gap-1.5 hover:gap-2.5 transition-all w-fit"
                 >
                   Ask about this →
                 </a>

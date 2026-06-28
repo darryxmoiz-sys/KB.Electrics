@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
+import { Space_Grotesk, Inter, Sora } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
 import MobileCTABar from "@/components/MobileCTABar";
 
-const fraunces = Fraunces({
+const grotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-fraunces",
-  weight: ["400", "500", "600", "700", "900"],
-  style: ["normal", "italic"],
+  variable: "--font-grotesk",
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -21,10 +20,10 @@ const inter = Inter({
   display: "swap",
 });
 
-const jbmono = JetBrains_Mono({
+const sora = Sora({
   subsets: ["latin"],
-  variable: "--font-jbmono",
-  weight: ["400", "500", "700"],
+  variable: "--font-sora",
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -65,10 +64,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-GB" className={`${fraunces.variable} ${inter.variable} ${jbmono.variable}`}>
+    <html lang="en-GB" className={`${grotesk.variable} ${inter.variable} ${sora.variable}`}>
       <head>
         <link rel="icon" href="/favicon.ico" />
-        <meta name="theme-color" content="#1B3A2E" />
+        <meta name="theme-color" content="#0B1120" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -103,7 +102,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body className="paper-grain">
+      <body>
         <Navbar />
         <main>{children}</main>
         <Footer />

@@ -3,14 +3,13 @@
 @tailwind utilities;
 
 :root {
-  --paper: #F7F4EC;
-  --parchment: #EFE7D4;
-  --ink: #0F2018;
-  --bottle: #1B3A2E;
-  --bottle-light: #274F3F;
-  --copper: #C4632B;
-  --copper-light: #D98449;
-  --slate: #5B6760;
+  --midnight: #0B1120;
+  --midnight-deep: #070B16;
+  --midnight-light: #121A2E;
+  --violet: #7C5CFF;
+  --cyan: #22D3EE;
+  --amber: #FFB454;
+  --mist: #A8B3CC;
 }
 
 * {
@@ -19,144 +18,137 @@
   padding: 0;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
-  background-color: var(--paper);
-  color: var(--ink);
+  background-color: var(--midnight);
+  color: #EDEFF7;
   font-family: var(--font-inter), system-ui, sans-serif;
   overflow-x: hidden;
 }
 
-::selection {
-  background: var(--copper);
-  color: var(--paper);
+::selection { background: var(--violet); color: white; }
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--midnight); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--violet), var(--cyan));
+  border-radius: 4px;
 }
 
-/* Scrollbar */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: var(--paper); }
-::-webkit-scrollbar-thumb { background: var(--bottle); border-radius: 0; }
-
-/* Focus visibility */
 a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
-  outline: 2px solid var(--copper);
+  outline: 2px solid var(--cyan);
   outline-offset: 3px;
 }
 
-/* Paper grain texture overlay */
-.paper-grain {
+/* === Gradient text === */
+.text-gradient {
+  background: linear-gradient(135deg, #7C5CFF, #22D3EE);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-gradient-amber {
+  background: linear-gradient(135deg, #FFB454, #7C5CFF);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* === Hero mesh background === */
+.hero-mesh-bg {
+  background: var(--midnight);
   background-image:
-    radial-gradient(circle at 20% 20%, rgba(27,58,46,0.025) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(196,99,43,0.03) 0%, transparent 50%);
+    radial-gradient(circle at 15% 20%, rgba(124,92,255,0.28) 0%, transparent 45%),
+    radial-gradient(circle at 85% 15%, rgba(34,211,238,0.20) 0%, transparent 40%),
+    radial-gradient(circle at 50% 95%, rgba(255,180,84,0.12) 0%, transparent 45%);
 }
 
-.noise-texture {
-  position: relative;
-}
-.noise-texture::before {
-  content: "";
+/* Drifting blur blobs */
+.blob {
   position: absolute;
-  inset: 0;
-  opacity: 0.4;
+  border-radius: 50%;
+  filter: blur(70px);
   pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  z-index: 0;
 }
 
-/* === JOB TICKET — signature card style === */
-.job-ticket {
+/* === Grid overlay === */
+.grid-overlay {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* === Glass card with gradient border glow === */
+.glass-card {
   position: relative;
-  background: var(--paper);
-  border: 1.5px solid rgba(15,32,24,0.15);
-  box-shadow: 3px 4px 0 rgba(15,32,24,0.08);
+  background: rgba(255,255,255,0.035);
+  border: 1px solid rgba(255,255,255,0.09);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 1.25rem;
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+.glass-card:hover {
+  border-color: rgba(124,92,255,0.5);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px -10px rgba(124,92,255,0.35), 0 0 0 1px rgba(34,211,238,0.15);
 }
 
-.job-ticket::before {
-  content: "";
-  position: absolute;
-  top: -1px;
-  left: 0;
-  right: 0;
-  height: 8px;
-  background-image: radial-gradient(circle at 8px 0, transparent 5px, var(--paper) 5.5px);
-  background-size: 16px 8px;
-  background-repeat: repeat-x;
-}
-
-.job-ticket-stub {
-  border-left: 1.5px dashed rgba(15,32,24,0.25);
-}
-
-/* Stamp badge */
-.stamp-badge {
-  border: 2px solid var(--bottle);
-  border-radius: 50%;
-  color: var(--bottle);
-  transform: rotate(-8deg);
+/* Animated gradient-conic border ring (used sparingly — signature) */
+.gradient-ring {
   position: relative;
+  border-radius: 1.5rem;
+  padding: 1.5px;
+  background: linear-gradient(135deg, #7C5CFF, #22D3EE, #FFB454, #7C5CFF);
+  background-size: 300% 300%;
+  animation: gradient-shift 6s ease infinite;
 }
-.stamp-badge::after {
-  content: "";
-  position: absolute;
-  inset: 4px;
-  border: 1px dashed var(--bottle);
-  border-radius: 50%;
-  opacity: 0.5;
-}
-
-/* Section padding */
-.section-padding {
-  padding: 4.5rem 0;
-}
-@media (min-width: 768px) {
-  .section-padding { padding: 6.5rem 0; }
+.gradient-ring > div {
+  border-radius: calc(1.5rem - 1.5px);
+  background: var(--midnight-light);
+  height: 100%;
 }
 
-/* Underline-draw link */
-.link-draw {
+/* Glow buttons */
+.btn-glow {
   position: relative;
-  text-decoration: none;
+  background: linear-gradient(135deg, #7C5CFF, #22D3EE);
+  box-shadow: 0 8px 30px -8px rgba(124,92,255,0.55);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.link-draw::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -2px;
-  width: 100%;
-  height: 1.5px;
-  background: currentColor;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease;
-}
-.link-draw:hover::after { transform: scaleX(1); }
-
-/* Hairline divider with copper dot */
-.dot-divider {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-.dot-divider::before, .dot-divider::after {
-  content: "";
-  height: 1px;
-  flex: 1;
-  background: rgba(15,32,24,0.15);
+.btn-glow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 36px -6px rgba(124,92,255,0.7);
 }
 
-/* Wiring diagram draw animation handled via class on svg path */
-.wire-path {
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
+.btn-amber-glow {
+  background: linear-gradient(135deg, #FFB454, #F59E2A);
+  box-shadow: 0 8px 30px -8px rgba(255,180,84,0.5);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-amber-glow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 36px -6px rgba(255,180,84,0.65);
 }
 
-/* Sticky nav blur */
+/* Section spacing */
+.section-padding { padding: 4.5rem 0; }
+@media (min-width: 768px) { .section-padding { padding: 6.5rem 0; } }
+
+/* Pill badge */
+.pill-badge {
+  background: rgba(124,92,255,0.12);
+  border: 1px solid rgba(124,92,255,0.3);
+}
+
+/* Nav blur on scroll */
 .nav-solid {
-  background: rgba(247,244,236,0.92);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(7,11,22,0.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 /* Mobile bottom bar */
@@ -170,14 +162,19 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   }
 }
 
-/* Texture for dark band sections (footer / route map) */
-.bottle-band {
-  background-color: var(--bottle);
-  background-image: radial-gradient(circle at 15% 30%, rgba(255,255,255,0.04) 0%, transparent 45%),
-    radial-gradient(circle at 85% 70%, rgba(196,99,43,0.08) 0%, transparent 50%);
+/* Glow dot for live indicators */
+.glow-dot {
+  box-shadow: 0 0 0 0 rgba(34,211,238,0.6);
 }
 
-/* Reduced motion */
+/* Numbered stat underline accent */
+.stat-underline {
+  height: 3px;
+  width: 32px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #7C5CFF, #22D3EE);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
